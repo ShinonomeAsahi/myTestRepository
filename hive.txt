@@ -1,0 +1,38 @@
+用指定符号拼接字段(第二个参数可以是数组)：
+concat_ws('|',a,b,c)
+
+去除重复元素(groupBy):
+collect_set
+
+不去除重复元素(groupBy):
+collect_list
+
+一行拆分为多行(Array,Map)：
+explode
+
+切割字符串：
+split(a,',')
+
+将上一行数据移下来拼接：
+lag(orderdate,1,[defaultValue]) over(partition by name order by orderdate)
+
+将下一行数据移上来拼接：
+lead(orderdate,1,[defaultValue]) over(partition by name order by orderdate)
+
+数据按时间顺序分组：
+ntile(5) over(order by orderdate) groupId
+
+日期转换为时间戳：
+select unix_timestamp('2022-01-05','yyyy-MM-dd')
+
+日期格式化：
+date_format('2022-01-05','yyyy-MM')
+
+填充空值：
+nvl(column,'test')
+
+正则替换：
+regexp_replace('2022/01/05','/','-')
+
+去重：
+ROW_Number() over (partition by id order by time DESC) 给分组后的每个id加一列按某一字段倒叙排序的rank值，取rank=1
